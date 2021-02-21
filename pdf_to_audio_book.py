@@ -10,7 +10,9 @@ def pdf_to_audio(pdf_file_name, page_to_start, page_to_end):
 
     book = open(pdf_file_name, 'rb')
     pdfReader = PyPDF2.PdfFileReader(book)
-    pages = pdfReader.numPages
+    pages = int(pdfReader.numPages)
+
+    print(pages)
 
     # get user input
     # page_to_start = int(input('''
@@ -29,7 +31,7 @@ def pdf_to_audio(pdf_file_name, page_to_start, page_to_end):
     my_text =""
 
     # set page number to read 
-    for num in range(int(page_to_start)-1,int(page_to_end)):
+    for num in range(pages):
         page = pdfReader.getPage(num)
         my_text = page.extractText()
 
@@ -39,3 +41,5 @@ def pdf_to_audio(pdf_file_name, page_to_start, page_to_end):
     return main_namef
 
 
+
+pdf_to_audio('D:\\python_pdf_to_audio_app_flask\\static\\pdf\\eng.pdf', 2, 2)
