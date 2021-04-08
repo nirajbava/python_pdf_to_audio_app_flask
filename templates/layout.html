@@ -156,6 +156,23 @@
             padding: 2%;
             }
 
+        #about{
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 30px;
+            margin-top: 5%;
+            background-color: whitesmoke;
+            padding: 5%;
+            padding-left: 10%;
+            padding-right: 10%;
+            }
+        
+        .ableft{
+            text-align: right;
+            float: right;
+        }
+
         #mainpage{
             width: 100%;
             display: flex;
@@ -227,6 +244,21 @@
             background-color: white;
         }
 
+        #conalert{
+            margin-left: 5%;
+            margin-right: 5%;
+            position: fixed;
+            text-align: center;
+            justify-content: center;
+            top: 10%;
+        }
+
+        #ferorico{
+            width: 190px;
+            height: 190px;
+            margin: 5%;
+        }
+
 @media only screen and (max-width: 1182px){
     #nav{
         display: none;
@@ -254,6 +286,7 @@
         font-size: 30px;
         color: black;
         padding-bottom: 10%;
+        border-radius: 5px;
     }
 
     #fecherd{
@@ -319,6 +352,10 @@
         width: 100%;
         font-size: 20px;
     }
+    #about{
+        font-size: 20px;
+        padding-bottom: 20%;
+    }
 }
     </style>
 
@@ -345,7 +382,7 @@
     <!-- mobile menu -->
 
     <nav id="mobilemenu">
-        <a href=""><button><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>
+        <a href="/about"><button><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>
         <a href="/"><button><i class="fa fa-home" aria-hidden="true"></i></button></a>
         <a href="/converter"><button><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button></a>
     </nav>
@@ -367,7 +404,7 @@
         <div class="modal-body" id="model">
             <div id="menu">
                 <a href="/"><button><i class="fa fa-home" aria-hidden="true"></i> home</button></a>
-                <a href=""><button><i class="fa fa-info-circle" aria-hidden="true"></i> about</button></a>
+                <a href="/about"><button><i class="fa fa-info-circle" aria-hidden="true"></i> about</button></a>
                 <a href="/converter"><button><i class="fa fa-file-pdf-o" aria-hidden="true"></i> converter</button></a>
             </div>
         </div>

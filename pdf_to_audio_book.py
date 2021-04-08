@@ -1,45 +1,30 @@
+from logging import exception
 from gtts import gTTS 
 import PyPDF2
 import random
 
+randomnumber = random.randint(1,1000)
+
 
 
 def pdf_to_audio(pdf_file_name, page_to_start, page_to_end):
-    # read pdf 
-    # # pdf_file_name = raw_input("Enter Your File Name (ex: book.pdf) : ")
 
     book = open(pdf_file_name, 'rb')
     pdfReader = PyPDF2.PdfFileReader(book)
-    pages = int(pdfReader.numPages)
+    pdftext= ''
 
-    print(pages)
-
-    # get user input
-    # page_to_start = int(input('''
-    # # Enter Page Number To play From : '''))
-
-    # page_to_end  = int(input('''
-    # Enter page Number To End : '''))
+    for num in range(page_to_start-1, page_to_end):
+        pdftext += pdfReader.getPage(num).extractText()
+        print(pdftext)
 
 
-    # make file name
-    rand = random.randint(1,1000)
-    main_namef = 'audio' +str(rand) + ".mp3"
-    file_name = 'D:\\python_pdf_to_audio_app_flask\\static\\audio\\' + main_namef
+    myobj = gTTS(text=pdftext, lang='en', slow=True, tld="com")
+    filepath = "audio"+str(randomnumber)+".mp3"
+    myobj.save("D:\\python_pdf_to_audio_app_flask\\static\\audio\\"+ filepath)
 
-    language = 'en'
-    my_text =""
+    return filepath
 
-    # set page number to read 
-    for num in range(pages):
-        page = pdfReader.getPage(num)
-        my_text = page.extractText()
-
-        myobj = gTTS(text=my_text, lang=language, slow=False) 
-        myobj.save(file_name) 
-
-    return main_namef
+  
 
 
 
-pdf_to_audio('D:\\python_pdf_to_audio_app_flask\\static\\pdf\\eng.pdf', 2, 2)

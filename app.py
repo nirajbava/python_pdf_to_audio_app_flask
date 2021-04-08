@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, send_file, session, redirect
+from logging import exception
+from flask import Flask, render_template, request, send_file, session, redirect, flash
 import os
 from pdf_to_audio_book import pdf_to_audio
 
@@ -28,7 +29,6 @@ def uploader():
         session['start']= int(start)
         session['end']= int(end)
         f.save(os.path.join(app.config['UPLOAD_FOLDER'] + f.filename))
-
     return redirect('/down')
 
 
@@ -41,13 +41,24 @@ def downloadFile(path):
 
 @app.route('/down', methods = ['GET', 'POST'])
 def download():
-    name = session['pdfname']
-    s = session['start']
-    e = session['end']
-    pdf_name = 'D:\\python_pdf_to_audio_app_flask\\static\\pdf\\' + session['pdfname']
-    main_name = pdf_to_audio(pdf_name, s, e)
-    session['audio_name'] = main_name
-    return render_template('download.html',  name=name, main_name=main_name)
+    try:
+        name = session['pdfname']
+        s = session['start']
+        e = session['end']
+        pdf_name = 'D:\\python_pdf_to_audio_app_flask\\static\\pdf\\' + session['pdfname']
+        main_name = pdf_to_audio(pdf_name, s, e)
+        session['audio_name'] = main_name
+        return render_template('download.html',  name=name, main_name=main_name)
+    except Exception as e:
+        return render_template('error.html', error=(str(e)))
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
-app.run(debug=True)
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('errorfourzerofour.html')
+
+if __name__ == "__main__" :
+    app.run(host='localhost', debug=True)
