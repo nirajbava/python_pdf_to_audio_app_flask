@@ -58,6 +58,7 @@ def about():
 
 @app.errorhandler(404)
 def page_not_found(e):
+    err="errp"
     return render_template('errorfourzerofour.html')
 
 if __name__ == "__main__" :
