@@ -20,7 +20,7 @@ def pdf_to_audio(pdf_file_name, page_to_start, page_to_end):
 
     myobj = gTTS(text=pdftext, lang='en', slow=True, tld="com")
     filepath = "audio"+str(randomnumber)+".mp3"
-    myobj.save("D:\\python_pdf_to_audio_app_flask\\static\\audio\\"+ filepath)
+    myobj.save("\\pdftoaudioconverter\\static\\audio\\"+ filepath)
 
     return filepath
 

@@ -7,7 +7,7 @@ from pdf_to_audio_book import pdf_to_audio
 app = Flask(__name__)
 app.secret_key = 'super-secret-key'
 ALLOWED_EXTENSIONS = {'pdf'}
-app.config['UPLOAD_FOLDER'] = 'D:\\python_pdf_to_audio_app_flask\\static\\pdf\\'
+app.config['UPLOAD_FOLDER'] = '\\pdftoaudioconverter\\static\\pdf\\'
 
 @app.route('/')
 def home():
@@ -36,7 +36,7 @@ def uploader():
 def downloadFile(path):
     file = session['audio_name']
     path  = file
-    directory = "D:\\python_pdf_to_audio_app_flask\\static\\audio\\" + path
+    directory = "\\pdftoaudioconverter\\static\\audio\\" + path
     return send_file(directory, as_attachment=True)
 
 @app.route('/down', methods = ['GET', 'POST'])
@@ -45,7 +45,7 @@ def download():
         name = session['pdfname']
         s = session['start']
         e = session['end']
-        pdf_name = 'D:\\python_pdf_to_audio_app_flask\\static\\pdf\\' + session['pdfname']
+        pdf_name = '\\pdftoaudioconverter\\static\\pdf\\' + session['pdfname']
         main_name = pdf_to_audio(pdf_name, s, e)
         session['audio_name'] = main_name
         return render_template('download.html',  name=name, main_name=main_name)
