@@ -61,4 +61,4 @@ def page_not_found(e):
     return render_template('errorfourzerofour.html')
 
 if __name__ == "__main__" :
-    app.run(host='localhost', debug=True)
+    app.run(debug=True)
