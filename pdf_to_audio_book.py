@@ -1,4 +1,3 @@
-from logging import exception
 from gtts import gTTS 
 import PyPDF2
 import random
