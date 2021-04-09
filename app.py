@@ -1,4 +1,3 @@
-from logging import exception
 from flask import Flask, render_template, request, send_file, session, redirect, flash
 import os
 from pdf_to_audio_book import pdf_to_audio
@@ -9,7 +8,7 @@ app = Flask(__name__)
 
 app.secret_key = 'super-secret-key'
 ALLOWED_EXTENSIONS = {'pdf'}
-app.config['UPLOAD_FOLDER'] = '\\pdftoaudioconverter\\static\\pdf\\'
+app.config['UPLOAD_FOLDER'] = '\\todo-pdftoaudioconverter\\static\\pdf\\'
 
 @app.route('/')
 def home():
@@ -38,7 +37,7 @@ def uploader():
 def downloadFile(path):
     file = session['audio_name']
     path  = file
-    directory = "\\pdftoaudioconverter\\static\\audio\\" + path
+    directory = "\\todo-pdftoaudioconverter\\static\\audio\\" + path
     return send_file(directory, as_attachment=True)
 
 @app.route('/down', methods = ['GET', 'POST'])
@@ -47,7 +46,7 @@ def download():
         name = session['pdfname']
         s = session['start']
         e = session['end']
-        pdf_name = '\\pdftoaudioconverter\\static\\pdf\\' + session['pdfname']
+        pdf_name = '\\todo-pdftoaudioconverter\\static\\pdf\\' + session['pdfname']
         main_name = pdf_to_audio(pdf_name, s, e)
         session['audio_name'] = main_name
         return render_template('download.html',  name=name, main_name=main_name)
