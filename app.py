@@ -5,6 +5,8 @@ from pdf_to_audio_book import pdf_to_audio
 
 
 app = Flask(__name__)
+
+
 app.secret_key = 'super-secret-key'
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['UPLOAD_FOLDER'] = '\\pdftoaudioconverter\\static\\pdf\\'
