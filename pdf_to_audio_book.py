@@ -16,7 +16,7 @@ def pdf_to_audio(pdf_file_name, page_to_start, page_to_end):
         pdftext += pdfReader.getPage(num).extractText()
     myobj = gTTS(text=pdftext, lang='en', slow=False, tld="com")
     filepath = "audio"+str(randomnumber)+".mp3"
-    myobj.save("//apps//todo-pdftoaudioconverter//static//audio//"+ filepath)
+    myobj.save("\\pdftoaudioconverter\\static\\audio\\"+ filepath)
 
     return filepath
 
