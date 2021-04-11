@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, session, redirect, flash
+from flask import Flask, render_template, request, send_file, session, redirect, flash, send_from_directory
 import os
 from pdf_to_audio_book import pdf_to_audio
 
@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.secret_key = 'super-secret-key'
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['UPLOAD_FOLDER'] = '\\pdftoaudioconverter\\static\\pdf\\'
+
 
 @app.route('/')
 def home():
@@ -60,6 +61,11 @@ def about():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('errorfourzerofour.html')
+
+
+@app.route('/PrivacyPolicy')
+def PrivacyPolicy():
+    return render_template('PrivacyPolicy.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
